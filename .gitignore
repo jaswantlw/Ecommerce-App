@@ -1,0 +1,7 @@
+# Ignore system or editor files
+.DS_Store
+*.log
+.env
+
+# Optional: ignore frontend build if it's copied to root
+/dist/
