@@ -48,7 +48,23 @@ const placeOrderRazorpay = async (req, res) => {};
 const allOrders = async (req, res) => {};
 
 //display all order for user:
-const userOrders = async (req, res) => {};
+const userOrders = async (req, res) => {
+  try {
+    const userId = req.userId;
+
+    const orders = await orderModel.find({
+      userId,
+    });
+
+    res.json({ success: true, orders });
+  } catch (error) {
+    console.log(error);
+    res.json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
 
 //update order status from admin:
 const updateStatus = async (req, res) => {};
