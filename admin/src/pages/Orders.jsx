@@ -22,7 +22,14 @@ const Orders = ({ token }) => {
       );
 
       if (response.data.success) {
-        setOrders(response.data.orders);
+        setOrders(
+          response.data.orders.filter(
+            (order) =>
+              order.paymentMethod === "COD" ||
+              (order.paymentMethod === "Stripe" &&
+                order.payment)
+          )
+        );
       } else {
         toast.error(response.data.message);
       }
