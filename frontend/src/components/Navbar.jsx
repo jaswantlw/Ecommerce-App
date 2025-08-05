@@ -9,8 +9,21 @@ import { ShopContext } from "../context/ShopContext";
 const Navbar = () => {
   const [visible, setVisible] = useState(false);
 
-  const { setShowSearched, getCartCount } =
-    useContext(ShopContext);
+  const {
+    setShowSearched,
+    getCartCount,
+    setToken,
+    token,
+    navigate,
+    setCartItems,
+  } = useContext(ShopContext);
+
+  const logout = () => {
+    navigate("/login");
+    localStorage.removeItem("token");
+    setToken("");
+    setCartItems({});
+  };
 
   return (
     <div className="flex items-center justify-between py-5 font-medium">
@@ -67,25 +80,36 @@ const Navbar = () => {
           alt=""
         ></img>
         <div className="group relative">
-          <Link to={"/login"}>
-            <img
-              className="w-5 cursor-pointer"
-              src={assets.profile_icon}
-            ></img>
-          </Link>
-          <div className="group-hover:block hidden absolute dropdown-menu right-0 pt-4">
-            <div className="flex flex-col gap-2 w-36 py-3 px-5 text-gray-500 rounded">
-              <p className="cursor-pointer hover:text-black">
-                My Profile
-              </p>
-              <p className="cursor-pointer hover:text-black">
-                Orders
-              </p>
-              <p className="cursor-pointer hover:text-black">
-                Logout
-              </p>
+          <img
+            onClick={() =>
+              token ? null : navigate("/login")
+            }
+            className="w-5 cursor-pointer"
+            src={assets.profile_icon}
+          ></img>
+          {token && (
+            <div className="group-hover:block hidden absolute dropdown-menu right-0 pt-4 bg-slate-50 rounded-md item">
+              <div className="flex flex-col gap-2 w-36 py-3 px-5 text-gray-500 rounded items-center">
+                <p className="cursor-pointer hover:text-black">
+                  My Profile
+                </p>
+                <p
+                  onClick={() =>
+                    navigate("/orders")
+                  }
+                  className="cursor-pointer hover:text-black"
+                >
+                  Orders
+                </p>
+                <p
+                  onClick={logout}
+                  className="cursor-pointer hover:text-black"
+                >
+                  Logout
+                </p>
+              </div>
             </div>
-          </div>
+          )}
         </div>
         <Link to="/cart" className="relative">
           <img

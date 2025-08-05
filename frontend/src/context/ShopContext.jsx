@@ -20,6 +20,7 @@ const ShopContextProvider = (props) => {
     useState(false);
   const [cartItems, setCartItems] = useState({});
   const [products, setProducts] = useState([]);
+  const [token, setToken] = useState("");
 
   const navigate = useNavigate();
 
@@ -101,10 +102,9 @@ const ShopContextProvider = (props) => {
         backendUrl + "/api/product"
       );
 
-      if(response.data.success) {
+      if (response.data.success) {
         setProducts(response.data.products);
-      }
-      else {
+      } else {
         toast.error(response.data.message);
       }
     } catch (error) {
@@ -115,6 +115,12 @@ const ShopContextProvider = (props) => {
 
   useEffect(() => {
     getProductsData();
+  }, []);
+
+  useEffect(() => {
+    if(!token && localStorage.getItem("token")) {
+      setToken(localStorage.getItem("token"));
+    }
   }, [])
 
   const value = {
@@ -132,6 +138,8 @@ const ShopContextProvider = (props) => {
     getCartAmount,
     navigate,
     backendUrl,
+    token,
+    setToken,
   };
 
   return (
