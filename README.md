@@ -5,7 +5,7 @@ A full-featured e-commerce website built using the **MERN stack** (MongoDB, Expr
 > ⚠️ This project is for educational/demo purposes. You can fork it and build your own version with improvements!
 
 **🌐 Live Sites:**
-- Frontend: [https://forever-fe.onrender.com](https://forever-main-fe.onrender.com)
+- Frontend: [https://forever-main-fe.onrender.com](https://forever-main-fe.onrender.com)
 - Backend API: [https://forever-be.onrender.com](https://forever-be.onrender.com)
 
 ---
