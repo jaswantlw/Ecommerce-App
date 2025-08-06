@@ -90,16 +90,13 @@ const Navbar = () => {
           {token && (
             <div className="group-hover:block hidden absolute dropdown-menu right-0 pt-4 bg-slate-50 rounded-md item">
               <div className="flex flex-col gap-2 w-36 py-3 px-5 text-gray-500 rounded items-center">
-                <p className="cursor-pointer hover:text-black">
-                  My Profile
-                </p>
                 <p
                   onClick={() =>
                     navigate("/orders")
                   }
                   className="cursor-pointer hover:text-black"
                 >
-                  Orders
+                  My Orders
                 </p>
                 <p
                   onClick={logout}

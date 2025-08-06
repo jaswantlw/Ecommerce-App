@@ -229,7 +229,7 @@ const PlaceOrder = () => {
 
           {/* Payment method selection */}
           <div className="flex gap-3 flex-col lg:flex-row">
-            {["stripe", "razorpay", "cod"].map(
+            {["stripe", "cod"].map(
               (payMethod) => (
                 <div
                   key={payMethod}
